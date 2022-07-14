@@ -7,11 +7,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using BloodBank.Data;
 using BloodBank.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BloodBank.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class BlogsController : ControllerBase
     {
         private readonly ApplicationDbContext _context;

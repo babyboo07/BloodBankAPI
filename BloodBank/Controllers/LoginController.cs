@@ -7,5 +7,6 @@ namespace BloodBank.Controllers
     [ApiController]
     public class LoginController : ControllerBase
     {
+
     }
 }
