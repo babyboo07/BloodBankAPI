@@ -10,7 +10,7 @@ using BloodBank.Models;
 
 namespace BloodBank.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class GroupbloodsController : ControllerBase
     {
