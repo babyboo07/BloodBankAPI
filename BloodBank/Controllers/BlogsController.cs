@@ -11,9 +11,8 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace BloodBank.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
-    [Authorize]
     public class BlogsController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
@@ -31,7 +30,7 @@ namespace BloodBank.Controllers
         }
 
         // GET: api/Blogs/5
-        [HttpGet("{id}")]
+        [HttpGet]
         public async Task<ActionResult<Blog>> GetBlog(int id)
         {
             var blog = await _context.Blogs.FindAsync(id);
@@ -42,6 +41,13 @@ namespace BloodBank.Controllers
             }
 
             return blog;
+        }
+
+        // GET: api/Blogs/5
+        [HttpGet]
+        public async Task<List<Blog>> SearchBlog(string blogName)
+        {
+            return await _context.Blogs.Where(x => x.Content.ToLower().Contains(blogName.ToLower())).ToListAsync();
         }
 
         // PUT: api/Blogs/5
@@ -87,7 +93,7 @@ namespace BloodBank.Controllers
         }
 
         // DELETE: api/Blogs/5
-        [HttpDelete("{id}")]
+        [HttpDelete]
         public async Task<IActionResult> DeleteBlog(int id)
         {
             var blog = await _context.Blogs.FindAsync(id);
